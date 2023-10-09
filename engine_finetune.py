@@ -53,7 +53,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: torch.nn.Module,
             samples, targets = mixup_fn(samples, targets)
 
         with torch.cuda.amp.autocast():
-            outputs = model(samples)
+            outputs = model(samples) # train val 的model都是一样的，所以mae的处理应该是在前面
             loss = criterion(outputs, targets)
 
         loss_value = loss.item()
